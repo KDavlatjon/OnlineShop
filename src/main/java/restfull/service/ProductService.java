@@ -22,16 +22,14 @@ public class ProductService {
      return productRepository.save(product);
     }
 
-//    Get one
+//  Get one
     public Product getOne(Long id){
         if (id==null)return null;
         return productRepository.findById(id).orElse(null);
     }
 
-//    GetList
+//  GetList
     public List<Product> getList(){
-        List<Product> all = productRepository.findAll();
-        System.out.println("\n");
-        return all;
+        return productRepository.findAll();
     }
 }

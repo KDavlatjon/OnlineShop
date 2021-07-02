@@ -26,7 +26,6 @@ public class OrdersService {
 
 //  Get One
     public Orders getOne(Long id){
-        if (id==null)return null;
         return ordersRepository.findById(id).orElse(null);
     }
 

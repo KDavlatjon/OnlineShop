@@ -23,7 +23,6 @@ import java.util.List;
 @Table(name = "orders")
 public class Orders implements Serializable {
 
-//     Orders have unique ID (UUID)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

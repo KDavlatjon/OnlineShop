@@ -20,9 +20,6 @@ public class Invoice implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-//    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    @JoinColumn(name = "orders_id", referencedColumnName = "id")
-//    private Orders orders;
 
     @Column(name = "orders_id", nullable = false)
     private Long ordersId;

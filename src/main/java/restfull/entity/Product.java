@@ -21,15 +21,9 @@ public class Product implements Serializable {
     private Integer price;
     private String description;
 
-//    @JsonIgnore
-//    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
-//    private List<Details> details;
-
 //   Category products
     @ManyToOne
     @JoinColumn(name = "category_id", referencedColumnName = "id")
     private Category category;
 
-//    @Column(name = "category_id")
-//    private Integer categoryId;
 }

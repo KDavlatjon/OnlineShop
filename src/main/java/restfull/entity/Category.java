@@ -20,7 +20,4 @@ public class Category implements Serializable {
 
     private String name;
 
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
-//    private List<Product> products;
-
 }

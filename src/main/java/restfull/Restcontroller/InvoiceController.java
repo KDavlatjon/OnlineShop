@@ -18,8 +18,11 @@ public class InvoiceController {
 
     //    Add
     @PostMapping("/add/{orderId}")
-    public Invoice add(@PathVariable(name = "orderId") Long orderId){
-        return invoiceService.add(orderId);
+    public Invoice add(
+            @PathVariable(name = "orderId") Long orderId,
+            @RequestParam(name = "amount") Integer amount
+            ){
+        return invoiceService.add(orderId, amount);
     }
 
     //    Get One

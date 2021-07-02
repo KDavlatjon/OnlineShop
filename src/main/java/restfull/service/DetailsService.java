@@ -17,7 +17,7 @@ public class DetailsService {
     private final ProductRepository productRepository;
 
     @Autowired
-    public DetailsService(DetailsRepository detailsRepository, OrdersService ordersService, OrdersRepository ordersRepository, ProductService productService, ProductRepository productRepository) {
+    public DetailsService(DetailsRepository detailsRepository, OrdersRepository ordersRepository, ProductService productService, ProductRepository productRepository) {
         this.detailsRepository = detailsRepository;
         this.ordersRepository = ordersRepository;
         this.productRepository = productRepository;

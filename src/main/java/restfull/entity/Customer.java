@@ -20,17 +20,9 @@ public class Customer implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
-//    @OneToMany( mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    private List<Orders> orders;
-
     private String name;
 
     private String country;
-
-//    public void putOrders(Orders orders){
-//        this.orders.add(orders);
-//    }
 
     private String address;
 

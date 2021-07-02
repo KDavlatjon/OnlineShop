@@ -20,10 +20,9 @@ public class PaymentController {
 
     @PostMapping("/add")
     public Payment add(
-            @RequestParam(name = "invoiceId") Long invoiceId,
-            @RequestParam(name = "paymentAmount") Integer amount
+            @RequestParam(name = "invoiceId") Long invoiceId
     ){
-        return paymentService.add(invoiceId, amount);
+        return paymentService.add(invoiceId);
     }
 
     @GetMapping("/get/{id}")

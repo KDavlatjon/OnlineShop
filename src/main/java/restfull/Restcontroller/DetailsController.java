@@ -19,8 +19,13 @@ public class DetailsController {
         this.detailsService = detailsService;
     }
 
-    @PostMapping("/add/{productId}/{orderId}/{quantity}")
-    public Details add(@PathVariable Long productId, Long orderId, Integer quantity){
+    @PostMapping("/add")
+    public Details add(
+            @RequestParam Long productId,
+            Long orderId,
+            Integer quantity
+
+    ){
         return detailsService.addDetails(productId, orderId, quantity);
     }
 

@@ -37,15 +37,5 @@ public class CustomerController {
         return customerService.getList();
     }
 
-    @PutMapping("/{customerId}/orders/{ordersId}")
-    public Customer customerToOrders(
-            @PathVariable Long customerId,
-            @PathVariable Long ordersId
-    ){
-        Customer customer = customerService.getOne(customerId);
-        Orders orders = ordersService.getOne(ordersId);
-//        customer.putOrders(orders);
-        return customerService.addCustomer(customer);
 
-    }
 }

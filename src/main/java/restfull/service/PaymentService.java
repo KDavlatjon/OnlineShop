@@ -22,10 +22,11 @@ public class PaymentService {
     }
 
 //    Add
-    public Payment add(Long invoiceId, Integer paymentAmount){
+    public Payment add(Long invoiceId){
         Payment payment = new Payment();
-        payment.setAmount(paymentAmount);
-        payment.setInvoice(invoiceRepository.findById(invoiceId).orElse(null));
+        Invoice invoice = invoiceRepository.findById(invoiceId).orElse(null);
+        payment.setInvoice(invoice);
+        payment.setAmount(invoice.getAmount());
 
         return paymentRepository.save(payment);
     }

@@ -81,7 +81,7 @@ public class CustomerWebController {
             @PathVariable Long ordersId,
             Model model
             ){
-        model.addAttribute("invoice", invoiceService.add(ordersId));
+        model.addAttribute("invoice", invoiceService.add(ordersId, detailsService.getAmount(ordersId)));
         model.addAttribute("detailsList", detailsService.getInvoiceDetails(ordersId));
         model.addAttribute("totalAmount", detailsService.getAmount(ordersId));
         return "invoice";
@@ -93,8 +93,7 @@ public class CustomerWebController {
             @PathVariable Long invoiceId,
             Model model
             ){
-        Integer amount =  invoiceService.getOne(invoiceId).getAmount();
-        model.addAttribute("payment", paymentService.add(invoiceId, amount));
+        model.addAttribute("payment", paymentService.add(invoiceId));
         return "payment";
     }
 

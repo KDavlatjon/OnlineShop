@@ -14,15 +14,17 @@ public class CategoryService {
         this.categoryRepository = categoryRepository;
     }
 
+//    Add Category
     public Category addCategory(Category category){
         return categoryRepository.save(category);
     }
 
+//    Get One
     public Category getOne(Integer id){
-        if (id == null)return null;
         return categoryRepository.findById(id).orElse(null);
     }
 
+//    Get List
     public List<Category> getList(){
         return categoryRepository.findAll();
     }
