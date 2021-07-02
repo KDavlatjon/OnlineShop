@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Shopping Cart</title>
+    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+<body>
+    <div style="text-align: center; margin-bottom: 40px;">
+    <h1 style="font-weight: bold">Shopping Cart</h1>
+    </div>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 col-md-10 col-md-offset-1">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th class="text-center">Price</th>
+                        <th class="text-center">Total</th>
+                        <th> </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="detail: ${detailsList}">
+                        <td class="col-sm-8 col-md-6">
+                        <div class="media">
+                            <a class="thumbnail pull-left" href="#"> <img class="media-object" src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png" style="width: 72px; height: 72px;"> </a>
+                            <div class="media-body">
+                                <h4 class="media-heading" th:text="${detail.product.name}"></h4>
+                                <h5 class="media-heading" th:text="${detail.product.category.name}"></h5>
+                            </div>
+                        </div></td>
+                        <td class="col-sm-1 col-md-1" style="text-align: center">
+                        <input type="email" class="form-control"  th:value="${detail.quantity}" readonly>
+                        </td>
+                        <td class="col-sm-1 col-md-1 text-center"><strong th:text="${detail.product.price}"></strong></td>
+                        <td class="col-sm-1 col-md-1 text-center"><strong th:text="${detail.product.price}*${detail.quantity}"></strong></td>
+                        <td class="col-sm-1 col-md-1">
+                            <form action="#" th:action="@{/customerWeb/delete/{id}(id=${detail.id})}" method="post">
+                                <input type="hidden" name="ordersId" th:value="${ordersId}" >
+                                <button type="submit" class="btn btn-danger">Remove</button>
+                            </form>
+<!--                            <a type="button" class="btn btn-danger" th:href="@{/customerWeb/delete/{id}(id=${detail.id})}">-->
+<!--                                <span class="glyphicon glyphicon-remove"></span> Remove-->
+<!--                            </a>-->
+                        </td>
+                    </tr>
+                        <td>   </td>
+                        <td>   </td>
+                        <td>   </td>
+                        <td><h3>Total Price</h3></td>
+                        <td class="text-right"><h3><strong th:text="${totalAmount}"></strong></h3></td>
+                    </tr>
+                    <tr>
+                        <td>   </td>
+                        <td>   </td>
+                        <td>   </td>
+                        <td>
+                        <a type="button" class="btn btn-default" th:href="@{/customerWeb/listProduct/{ordersId}(ordersId=${ordersId})}">
+                            <span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
+                        </a></td>
+                        <td>
+                        <a type="button" class="btn btn-success" th:href="@{/customerWeb/invoice/{ordersId}(ordersId=${ordersId})}">
+                            Buy <span class="glyphicon glyphicon-play"></span>
+                        </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
