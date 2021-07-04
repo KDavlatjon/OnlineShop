@@ -45,5 +45,10 @@ public class CustomerService {
         return customerId;
     }
 
+//    Delete Customer
+    public void deleteOne(Long id){
+        customerRepository.deleteById(id);
+    }
+
 }
 

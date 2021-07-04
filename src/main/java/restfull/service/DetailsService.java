@@ -31,7 +31,6 @@ public class DetailsService {
         details.setQuantity(quantity);
         return detailsRepository.save(details);
     }
-
     //    Get Amount
     public Integer getAmount(Long orderId){
         Integer amount =0;

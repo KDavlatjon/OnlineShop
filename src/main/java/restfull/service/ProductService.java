@@ -32,4 +32,9 @@ public class ProductService {
     public List<Product> getList(){
         return productRepository.findAll();
     }
+
+//    Delete One
+    public void deleteOne(Long id){
+        productRepository.deleteById(id);
+    }
 }

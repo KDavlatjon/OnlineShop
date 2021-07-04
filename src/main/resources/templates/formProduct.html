@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+
+<head>
+	<meta charset="UTF-8">
+	<title>Management Application</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+	<header>
+		<nav class="navbar navbar-expand-md navbar-dark" style="background-color: #5cb85c">
+			<ul class="navbar-nav">
+				<li><a th:href="@{/adminWeb/products}" class="nav-link">Products</a></li>
+				<li><a th:href="@{/adminWeb/customers}" class="nav-link">customers</a></li>
+				<li><a th:href="@{/adminWeb/categories}" class="nav-link">categories</a></li>
+				<li><a th:href="@{/adminWeb/invoice}" class="nav-link">Invoice</a></li>
+				<li><a th:href="@{/adminWeb/payment}" class="nav-link">payments</a></li>
+			</ul>
+		</nav>
+	</header>
+	<br>
+	<div class="container col-md-5">
+		<div class="card">
+			<div class="card-body">
+				<form th:action="@{/adminWeb/addProduct}" th:object="${product}" method="post">
+					<caption>
+						<h2>Add New Product</h2>
+					</caption>
+					<fieldset class="form-group">
+						<label>Name</label>
+						<input type="text" th:field="*{name}" class="form-control" name="name" required="required">
+					<fieldset class="form-group">
+					</fieldset>
+						<label>Price</label>
+						<input type="text" th:field="*{price}" class="form-control" name="price">
+					</fieldset>
+					<fieldset class="form-group">
+						<label>Description</label>
+						<input type="text" th:field="*{description}" class="form-control" name="description" required="required">
+					</fieldset>
+					<fieldset class="form-group">
+						<label for="category">Category</label>
+						<select  id="category" class="form-control"  name="category">
+							<option th:each="category: ${categoryList}" th:value="${category.id}" th:text="${category.name}"></option>
+						</select>
+					</fieldset>
+					<button type="submit" class="btn btn-success">Add</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

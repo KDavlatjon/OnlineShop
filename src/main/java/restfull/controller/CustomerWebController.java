@@ -34,7 +34,21 @@ public class CustomerWebController {
         return "signIn";
     }
 
-//  Autherization
+//  Show SignUp
+    @GetMapping( "/signUp")
+    public String showSignUp(Model model){
+        model.addAttribute("customer", new Customer());
+        return "signUp";
+    }
+
+//  Add new Customer from SignUp form
+    @PostMapping("/add")
+    public String addCustomer(@ModelAttribute Customer customer){
+        customerService.addCustomer(customer);
+        return  "redirect:signIn";
+    }
+
+//  Authentication
     @GetMapping("/check")
     public String checkCustomer(
             @ModelAttribute Customer customer,
@@ -95,13 +109,6 @@ public class CustomerWebController {
             ){
         model.addAttribute("payment", paymentService.add(invoiceId));
         return "payment";
-    }
-
-//  Add new Customer from SignUp form
-    @PostMapping("/add")
-    public String addCustomer(@ModelAttribute Customer customer){
-        customerService.addCustomer(customer);
-        return  "redirect:signIn";
     }
 
 
