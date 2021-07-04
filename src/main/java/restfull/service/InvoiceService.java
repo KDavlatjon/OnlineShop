@@ -1,11 +1,13 @@
 package restfull.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import restfull.entity.Invoice;
 import restfull.repository.InvoiceRepository;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -14,6 +16,7 @@ import java.util.List;
 public class InvoiceService {
 
     private final InvoiceRepository invoiceRepository;
+    private Object LocalDateTime;
 
     @Autowired
     public InvoiceService(InvoiceRepository invoiceRepository) {
@@ -45,3 +48,13 @@ public class InvoiceService {
         return invoiceRepository.findAll();
     }
 }
+
+//    Delete Overdue Invoices
+//    @Scheduled(fixedRate = 10000l)
+//    public void deleteInvoice(){
+//        List<Invoice> invoiceList = invoiceRepository.findAll();
+//        Object currentTime= LocalDateTime;
+//        for (Invoice invoice : invoiceList) {
+//            invoice.getDue().after(currentTime)
+//        }
+//    }

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import restfull.entity.Category;
 import restfull.entity.Product;
 import restfull.service.*;
 
@@ -65,8 +66,25 @@ public class AdminController {
         model.addAttribute("categories", categoryService.getList());
         return "manageCategories";
     }
+    @GetMapping("/formCategory")
+    public String showFormCategory(Model model){
+        model.addAttribute("category", new Category());
+        return "formCategory";
+    }
 
-    @GetMapping("/categories/{id}")
+    @GetMapping("/updateCategory/{id}")
+    public String showUpdateCategory(@PathVariable(value = "id") Integer id, Model model){
+        model.addAttribute("category", categoryService.getOne(id));
+        return "updateCategory";
+    }
+
+    @PostMapping("/addCategory")
+    public String addCategory(@ModelAttribute Category category){
+        categoryService.addCategory(category);
+        return "redirect:/adminWeb/categories";
+    }
+
+    @GetMapping("/category/{id}")
     public String deleteCategory(@PathVariable Integer id){
         categoryService.deleteOne(id);
         return "redirect:/adminWeb/categories";
@@ -77,13 +95,13 @@ public class AdminController {
     @GetMapping("/customers")
     public String showCustomer(Model model){
         model.addAttribute("customers", customerService.getList());
-        return "customers";
+        return "manageCustomers";
     }
 
     @GetMapping("/customers/{id}")
     public String deleteCustomers(@PathVariable Long id){
         customerService.deleteOne(id);
-        return "redirect:customers";
+        return "redirect:/adminWeb/customers";
     }
 
     //    Invoice Operation ======================================================================
