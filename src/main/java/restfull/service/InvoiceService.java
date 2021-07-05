@@ -52,10 +52,11 @@ public class InvoiceService {
 //    Delete Overdue Invoices
     @Scheduled(cron = "0 0 0 * * *")
     public void deleteInvoice(){
+        Date date = new Date();
         List<Invoice> invoiceList = invoiceRepository.findAll();
         for (Invoice invoice : invoiceList) {
-            System.out.println(invoice.getDue().getTime());
-            if (((invoice.getDue().getTime()-invoice.getIssue().getTime())>=5) && paymentRepository.findByInvoice(invoice)==null){
+//            5 day
+            if (((invoice.getDue().getTime()-date.getTime())<1) && paymentRepository.findByInvoice(invoice)==null){
                 invoiceRepository.delete(invoice);
             }
         }
