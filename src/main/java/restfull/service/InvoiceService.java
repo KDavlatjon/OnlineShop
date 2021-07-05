@@ -5,9 +5,9 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import restfull.entity.Invoice;
 import restfull.repository.InvoiceRepository;
+import restfull.repository.PaymentRepository;
 
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -16,11 +16,12 @@ import java.util.List;
 public class InvoiceService {
 
     private final InvoiceRepository invoiceRepository;
-    private Object LocalDateTime;
+    private final PaymentRepository paymentRepository;
 
     @Autowired
-    public InvoiceService(InvoiceRepository invoiceRepository) {
+    public InvoiceService(InvoiceRepository invoiceRepository, PaymentRepository paymentRepository) {
         this.invoiceRepository = invoiceRepository;
+        this.paymentRepository = paymentRepository;
     }
 
 //    Add
@@ -47,14 +48,17 @@ public class InvoiceService {
     public List<Invoice> InvoiceList(){
         return invoiceRepository.findAll();
     }
-}
 
 //    Delete Overdue Invoices
-//    @Scheduled(fixedRate = 10000l)
-//    public void deleteInvoice(){
-//        List<Invoice> invoiceList = invoiceRepository.findAll();
-//        Object currentTime= LocalDateTime;
-//        for (Invoice invoice : invoiceList) {
-//            invoice.getDue().after(currentTime)
-//        }
-//    }
+    @Scheduled(cron = "0 0 0 * * *")
+    public void deleteInvoice(){
+        List<Invoice> invoiceList = invoiceRepository.findAll();
+        for (Invoice invoice : invoiceList) {
+            System.out.println(invoice.getDue().getTime());
+            if (((invoice.getDue().getTime()-invoice.getIssue().getTime())>=5) && paymentRepository.findByInvoice(invoice)==null){
+                invoiceRepository.delete(invoice);
+            }
+        }
+    }
+
+}

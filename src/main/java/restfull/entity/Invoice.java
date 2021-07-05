@@ -7,6 +7,7 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
 
 @Data
@@ -30,5 +31,6 @@ public class Invoice implements Serializable {
     private Date issue;
 
     private Date due;
+
 
 }
