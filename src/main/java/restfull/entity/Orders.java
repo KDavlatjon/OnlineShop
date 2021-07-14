@@ -27,8 +27,8 @@ public class Orders implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="customer_id")
-    Long customerId;
+    @Column(name="user_id")
+    Long userId;
 
     @JsonIgnore
     @OneToMany(mappedBy = "orders", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

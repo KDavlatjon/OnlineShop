@@ -20,14 +20,14 @@
     <div class="container col-md-5">
         <div class="card">
             <div class="card-body">
-                <form action="#" th:action="@{/customerWeb/check}" th:object="${customer}" method="get">
+                <form action="#" th:action="@{/customerWeb/check}" th:object="${loginVM}" method="get">
 <!--                    Shu yerga bildirgi chiqarish kerak-->
                     <fieldset class="form-group">
                         <label>Name</label> <input type="text" th:field="*{name}" class="form-control" name="name"
                             required="required">
                     </fieldset>
                     <fieldset class="form-group">
-                        <label>Phone</label> <input type="text" th:field="*{phone}" class="form-control" name="phone">
+                        <label>Phone</label> <input type="text" th:field="*{password}" class="form-control" name="password">
                     </fieldset>
 
                     <button type="submit" class="btn btn-success">SignIn</button>

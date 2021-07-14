@@ -18,9 +18,9 @@ public class OrdersService {
     }
 
 //    Add
-    public Orders addOrder(Long customerId){
+    public Orders addOrder(Long userId){
         Orders orders = new Orders();
-        orders.setCustomerId(customerId);
+        orders.setUserId(userId);
         return ordersRepository.save(orders);
     }
 

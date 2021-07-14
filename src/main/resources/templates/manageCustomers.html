@@ -62,15 +62,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                        <tr th:each="customer: ${customers}">
-                            <td th:text="${customer.id}"></td>
-                            <td th:text="${customer.name}"></td>
-                            <td th:text="${customer.country}"></td>
-                            <td th:text="${customer.address}"></td>
-                            <td th:text="${customer.phone}"></td>
+                        <tr th:each="users: ${customers}">
+                            <td th:text="${users.id}"></td>
+                            <td th:text="${users.name}"></td>
+                            <td th:text="${users.country}"></td>
+                            <td th:text="${users.address}"></td>
+                            <td th:text="${users.phone}"></td>
 
                             <td>
-                                <a th:href="@{/adminWeb/customers/{id}(id=${customer.id})}" title="Delete">Delete</a>
+                                <a th:href="@{/adminWeb/customers/{id}(id=${users.id})}" title="Delete">Delete</a>
                             </td>
                         </tr>
                 </tbody>

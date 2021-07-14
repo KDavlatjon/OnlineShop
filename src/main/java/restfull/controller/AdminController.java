@@ -12,15 +12,15 @@ import restfull.service.*;
 @RequestMapping("/adminWeb")
 public class AdminController {
 
-    private final CustomerService customerService;
+    private final UserService userService;
     private final ProductService productService;
     private final InvoiceService invoiceService;
     private final PaymentService paymentService;
     private final CategoryService categoryService;
 
     @Autowired
-    public AdminController(CustomerService customerService, ProductService productService, InvoiceService invoiceService, PaymentService paymentService, CategoryService categoryService) {
-        this.customerService = customerService;
+    public AdminController(UserService userService, ProductService productService, InvoiceService invoiceService, PaymentService paymentService, CategoryService categoryService) {
+        this.userService = userService;
         this.productService = productService;
         this.invoiceService = invoiceService;
         this.paymentService = paymentService;
@@ -91,16 +91,16 @@ public class AdminController {
     }
 
 
-//    Customer Operation ======================================================================
+//    Users Operation ======================================================================
     @GetMapping("/customers")
     public String showCustomer(Model model){
-        model.addAttribute("customers", customerService.getList());
+        model.addAttribute("customers", userService.getList());
         return "manageCustomers";
     }
 
     @GetMapping("/customers/{id}")
     public String deleteCustomers(@PathVariable Long id){
-        customerService.deleteOne(id);
+        userService.deleteOne(id);
         return "redirect:/adminWeb/customers";
     }
 
@@ -111,7 +111,7 @@ public class AdminController {
         return "invoice";
     }
 
-    //    Customer Operation ======================================================================
+    //    Users Operation ======================================================================
     @GetMapping("/payment")
     public String showPayment(Model model){
         model.addAttribute("payments", paymentService.PaymentList());

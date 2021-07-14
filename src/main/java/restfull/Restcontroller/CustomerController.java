@@ -2,9 +2,8 @@ package restfull.Restcontroller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import restfull.entity.Customer;
-import restfull.entity.Orders;
-import restfull.service.CustomerService;
+import restfull.entity.Users;
+import restfull.service.UserService;
 import restfull.service.OrdersService;
 
 import java.util.List;
@@ -13,28 +12,28 @@ import java.util.List;
 @RequestMapping("/customer")
 public class CustomerController {
 
-    private  final CustomerService customerService;
+    private  final UserService userService;
     private final OrdersService ordersService;
 
     @Autowired
-    public CustomerController(CustomerService customerService, OrdersService ordersService) {
-        this.customerService = customerService;
+    public CustomerController(UserService userService, OrdersService ordersService) {
+        this.userService = userService;
         this.ordersService = ordersService;
     }
 
     @PostMapping("/add")
-    public Customer add(@RequestBody Customer customer){
-       return customerService.addCustomer(customer);
+    public Users add(@RequestBody Users users){
+       return userService.addCustomer(users);
     }
 
     @GetMapping("/get/{id}")
-    public Customer getOne(@PathVariable(name = "id") Long id){
-        return customerService.getOne(id);
+    public Users getOne(@PathVariable(name = "id") Long id){
+        return userService.getOne(id);
     }
 
     @GetMapping("/list")
-    public List<Customer> CustomerList(){
-        return customerService.getList();
+    public List<Users> CustomerList(){
+        return userService.getList();
     }
 
 
