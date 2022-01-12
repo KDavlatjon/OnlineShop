@@ -1,5 +1,6 @@
 package restfull.Restcontroller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -23,13 +24,14 @@ public class CustomerJwtController {
     private final JwtTokenProvider jwtTokenProvider;
     private final UserRepository userRepository;
 
+    @Autowired
     public CustomerJwtController(AuthenticationManager authenticationManager, JwtTokenProvider jwtTokenProvider, UserRepository userRepository) {
         this.authenticationManager = authenticationManager;
         this.jwtTokenProvider = jwtTokenProvider;
         this.userRepository = userRepository;
     }
 
-    @PostMapping("/login")
+    @PostMapping("/logIn")
     public ResponseEntity<?> login(@RequestBody LoginVM loginVM){
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginVM.getName(), loginVM.getPassword()));
         Users users = userRepository.findByName(loginVM.getName());

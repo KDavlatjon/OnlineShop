@@ -1,7 +1,6 @@
 package restfull.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -24,18 +23,16 @@ public class CustomerWebController {
     private final InvoiceService invoiceService;
     private final PaymentService paymentService;
 
-    private final AuthenticationManager authenticationManager;
     private final JwtTokenProvider jwtTokenProvider;
 
     @Autowired
-    public CustomerWebController(UserService userService, OrdersService ordersService, ProductService productService, DetailsService detailsService, InvoiceService invoiceService, PaymentService paymentService, AuthenticationManager authenticationManager, JwtTokenProvider jwtTokenProvider) {
+    public CustomerWebController(UserService userService, OrdersService ordersService, ProductService productService, DetailsService detailsService, InvoiceService invoiceService, PaymentService paymentService, JwtTokenProvider jwtTokenProvider) {
         this.userService = userService;
         this.ordersService = ordersService;
         this.productService = productService;
         this.detailsService = detailsService;
         this.invoiceService = invoiceService;
         this.paymentService = paymentService;
-        this.authenticationManager = authenticationManager;
         this.jwtTokenProvider = jwtTokenProvider;
     }
 
@@ -50,7 +47,7 @@ public class CustomerWebController {
 //  Show SignUp
     @GetMapping( "/signUp")
     public String showSignUp(Model model){
-        model.addAttribute("customer", new Users());
+        model.addAttribute("users", new Users());
         return "signUp";
     }
 
